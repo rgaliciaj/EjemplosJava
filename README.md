@@ -1,2 +1,2 @@
 # EjemplosJava
-En esta sección se estarán cargando ejercicios de aprendizaje del lenguaje Java
+En esta sección se estarán cargando ejercicios para aprendizaje del lenguaje Java
