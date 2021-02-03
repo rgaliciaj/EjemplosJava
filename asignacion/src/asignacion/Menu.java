@@ -5,7 +5,6 @@
  */
 package asignacion;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +17,7 @@ import java.util.stream.Collectors;
 public class Menu {
     List<Persona> persons = new ArrayList();
     List<Carro> cars  = new ArrayList();
+    List<AsignClienteCarro>  nuevaListaPersonasYCarros = new ArrayList();
     
     
     public void Ejecutar() {
@@ -36,7 +36,28 @@ public class Menu {
         
         cars = Arrays.asList(carro_1, carro_2, carro_3, carro_4, carro_5, carro_6);
         
-        this.buscarCarroPorPropietario(2);
+        // formar la tercer estructura
+        /*
+            {
+                idPerson: 1
+                name: 'jorge',
+                cars: [{...}, {...} ]
+            },
+        */
+        for(int i=0; i < persons.size(); i ++) {
+            Persona elemento = persons.get(i);
+            AsignClienteCarro asignacion = new AsignClienteCarro(elemento.idPerson, elemento.name, this.buscarCarroPorPropietario(elemento.idPerson));
+            this.nuevaListaPersonasYCarros.add(asignacion);
+        }
+        
+        
+        for(AsignClienteCarro elementoNuevaEstructrua: nuevaListaPersonasYCarros ) {
+            System.out.println(" idPerson  " + elementoNuevaEstructrua.idPersona);
+            System.out.println(" name  " + elementoNuevaEstructrua.name );
+            // mostrar en otro for  los datos de la lista...
+            System.out.println(" cars " + elementoNuevaEstructrua.carrosList.size());
+        }
+        
         
     }
     
