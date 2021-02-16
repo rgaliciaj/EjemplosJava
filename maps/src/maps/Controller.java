@@ -25,7 +25,7 @@ public class Controller {
             response.put("status", "todo ok");
         } catch(ArrayIndexOutOfBoundsException exception) {
             response.put("exc", exception.toString());
-            response.put("status", "todo mal :(");
+            response.put("status", "todo mal");
         }
        
         return response;
