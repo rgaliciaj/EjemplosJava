@@ -7,7 +7,10 @@ package inputdata;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 public class Menu {
     Scanner entradaDeDatos = new Scanner(System.in);
     List<User> users = new ArrayList();
+    Map<Object, Object> mapAuth = new HashMap();
  
     public void Inicio(){
         // usuario commodion
@@ -29,13 +33,15 @@ public class Menu {
         System.out.println(" Escribe tu password... ");
         String password = this.entradaDeDatos.nextLine();
         
-        boolean respuesta = this.verificarIdentidad(nickname, password);
-        
-        if ( respuesta ) {
+        Map<?, ?> resultAuth = this.verificarIdentidad(nickname, password);
+        Object resultObj = resultAuth.get("status");
+        boolean access = Boolean.parseBoolean(resultObj.toString());
+         
+        if ( access == true ) {
             this.MenuPrincipal();
         }
         
-        if ( respuesta == false ) {
+        if ( access == false) {
             System.out.println("vuelva a intentar");
             this.Inicio();
         }
@@ -43,25 +49,21 @@ public class Menu {
     }
     
     
-    public boolean verificarIdentidad(String username, String password) {
-        List<User> listaDeusuarioEncontrado = this.users.stream().filter( e -> { 
-            String tempUsername = e.username;
-            String tempPass = e.password;
-            boolean resultado = false;
-            if ( tempUsername.equals(username) &&  tempPass.equals(password)) {
-                resultado = true;
-                return resultado;
-            }
-            return resultado;
-        }).collect(Collectors.toList());
+    public Map<?, ?> verificarIdentidad(String username, String password) {
+        User userFind = this.users.stream()
+            .filter( u -> u.username.equals(username))
+            .filter( u -> u .password.equals(password))
+            .findAny()
+            .orElse(null);
         
-        boolean respuesta = false;
-        
-        if( (listaDeusuarioEncontrado.size() > 0 ) ) {
-            respuesta = true;
+        boolean resultStatus = false;
+        if ( userFind != null ) {
+            resultStatus = true;
         }
         
-        return respuesta;
+        this.mapAuth.put("status", resultStatus);
+        this.mapAuth.put("user", userFind);
+        return this.mapAuth;
     }
     
     
