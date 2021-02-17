@@ -7,6 +7,7 @@ package samplemysqlconnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,14 +29,22 @@ public class SampleMysqlConnect {
         String password = "";
         
         try {
+            // DB Config
             Connection cn = DriverManager.getConnection(urlDB, username, password);
             Statement stmt = cn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM TB_OWNER");
             
+            // read data from database
             while(resultSet.next()) {
                 System.out.println(" name " + resultSet.getString("NAME_OWNER"));
             }
             
+            //insert data from database
+            String query = "INSERT INTO TB_OWNER(NAME_OWNER) VALUES('lee byrons')";
+            PreparedStatement stmtInsert = cn.prepareStatement(query);
+            // save to database
+            int rowsAffected = stmtInsert.executeUpdate();
+            System.out.println("rows " + rowsAffected );
         } catch (SQLException ex) {
             Logger.getLogger(SampleMysqlConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
