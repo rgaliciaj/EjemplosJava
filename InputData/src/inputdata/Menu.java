@@ -33,7 +33,7 @@ public class Menu {
         System.out.println(" Escribe tu password... ");
         String password = this.entradaDeDatos.nextLine();
         
-        Map<?, ?> resultAuth = this.verificarIdentidad(nickname, password);
+        Map<Object, Object> resultAuth = this.verificarIdentidad(nickname, password);
         Object resultObj = resultAuth.get("status");
         boolean access = Boolean.parseBoolean(resultObj.toString());
          
@@ -49,7 +49,7 @@ public class Menu {
     }
     
     
-    public Map<?, ?> verificarIdentidad(String username, String password) {
+    public Map<Object, Object> verificarIdentidad(String username, String password) {
         User userFind = this.users.stream()
             .filter( u -> u.username.equals(username))
             .filter( u -> u .password.equals(password))
