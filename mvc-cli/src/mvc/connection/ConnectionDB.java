@@ -25,7 +25,7 @@ public class ConnectionDB {
     PreparedStatement preparedStatement = null; 
     ResultSet resultSet = null;
     
-    public Connection open() throws ClassNotFoundException{  
+    public Connection open() {  
         try {
             conn = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
@@ -55,7 +55,7 @@ public class ConnectionDB {
             throw new Exception("El comando a ejecutar es nulo!");
         }
             
-        return  (counterRows > 1 );
+        return  (counterRows > 0 );
     }
     
     public ResultSet executeQuery (String strSQL){
