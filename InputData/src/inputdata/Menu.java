@@ -6,13 +6,10 @@
 package inputdata;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -61,6 +58,7 @@ public class Menu {
             resultStatus = true;
         }
         
+       
         this.mapAuth.put("status", resultStatus);
         this.mapAuth.put("user", userFind);
         return this.mapAuth;
