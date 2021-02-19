@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package mvc.cli;
+import mvc.views.PrincipalMenu;
 
 /**
  *
@@ -16,6 +17,8 @@ public class MvcCli {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        PrincipalMenu menu = new PrincipalMenu();
+        menu.Menu();
     }
     
 }
