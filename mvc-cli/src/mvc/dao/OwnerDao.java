@@ -58,6 +58,7 @@ public class OwnerDao implements OwenerInterface {
 
     @Override
     public Owner updateOwner(Owner owner) {
+        // holass
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
