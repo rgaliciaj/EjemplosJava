@@ -37,7 +37,7 @@ public class OwnerDao implements OwenerInterface {
     @Override
     public List<Owner> allOweners() {
         List<Owner> owners = new ArrayList();
-        try {
+        try {    
             this.conn.open();
             this.sql = "SELECT * FROM TB_OWNER;";
             
