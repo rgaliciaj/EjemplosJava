@@ -5,6 +5,8 @@
  */
 package mvc.interfaces;
 
+
+import java.util.List;
 import mvc.models.Car;
 
 /**
@@ -13,4 +15,5 @@ import mvc.models.Car;
  */
 public interface CarInterface {
     public void addNewCar (Car car);
+    public List<Car> allCars();
 }

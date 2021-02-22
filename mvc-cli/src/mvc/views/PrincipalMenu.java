@@ -41,6 +41,9 @@ public class PrincipalMenu {
         if( selection == 3){
             this.RegisterCar();
         }
+        if(selection == 4){
+            this.listCars();
+        }
         
     }
     
@@ -73,5 +76,15 @@ public class PrincipalMenu {
         this.carDao.addNewCar(newCar);
     }
     
+    public void listCars(){
+        List<Car> carsDB = new ArrayList();
+        carsDB = this.carDao.allCars();
+        
+        for(Car cc : carsDB){
+            System.out.println("ID car: " + cc.getIdCar());
+            System.out.println("car brand: " + cc.getBrand());
+            System.out.println("Id owner: " + cc.getIdOwner());
+        }
+    }
     
 }
