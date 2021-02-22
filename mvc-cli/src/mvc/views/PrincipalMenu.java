@@ -23,6 +23,7 @@ public class PrincipalMenu {
     public void Menu() {
         System.out.println(" 1. Registrar un owner ");
         System.out.println(" 2. Listar todos los owners ");
+        System.out.println(" 3. actualizar los owners ");
         int selection =  Integer.parseInt(this.entradaDeDatos.nextLine());
         
         if ( selection == 1) {
@@ -31,6 +32,10 @@ public class PrincipalMenu {
         
         if(  selection == 2) {
             this.ListOweners();
+        }
+        
+        if( selection == 3 ) {
+            this.updateOwner();
         }
         
     }
@@ -52,6 +57,32 @@ public class PrincipalMenu {
             System.out.println(" name = " + o.getNameOwner());
         }
        
+    }
+    
+    public void updateOwner(){
+        List<Owner> ownersDB = new ArrayList();
+       ownersDB = this.oDao.allOweners();
+       
+        for(Owner o: ownersDB) {
+            System.out.println(" id = " + o.getIdOwner());
+            System.out.println(" name = " + o.getNameOwner());
+        }
+        System.out.println(" escribe el id del owner a actualizar ");
+        int vIdOwner = Integer.parseInt(this.entradaDeDatos.nextLine());
+        System.out.println(" escribe el nuevo nombre.... ");
+        String vName = this.entradaDeDatos.nextLine();
+        
+        Owner ow = new Owner();
+        //setting values from set
+        ow.setIdOwner(vIdOwner);
+        ow.setNameOwner(vName);
+        Owner ownerUpdate = this.oDao.updateOwner(ow);
+        
+        System.out.println("persona actualizada name "+ ownerUpdate.getNameOwner());
+        System.out.println("persona actualizada id "+ ownerUpdate.getIdOwner());
+        
+        this.Menu();
+     
     }
     
     

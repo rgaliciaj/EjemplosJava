@@ -15,5 +15,6 @@ public interface OwenerInterface {
     public void addNewOwner(Owner owner);
     public List<Owner> allOweners();
     public Owner updateOwner(Owner owner);
+    public Owner OwnerById(int idOwner);
     public boolean deleteOwner(int idOwner);
 }
