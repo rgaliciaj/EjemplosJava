@@ -8,8 +8,10 @@ package mvc.views;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import mvc.dao.CarDao;
 import mvc.models.Owner;
 import mvc.dao.OwnerDao;
+import mvc.models.Car;
 
 /**
  *
@@ -18,12 +20,18 @@ import mvc.dao.OwnerDao;
 public class PrincipalMenu {
     Scanner entradaDeDatos = new Scanner(System.in);
     OwnerDao oDao = new OwnerDao();
+    CarDao carDao = new CarDao();
     
-
     public void Menu() {
         System.out.println(" 1. Registrar un owner ");
         System.out.println(" 2. Listar todos los owners ");
+<<<<<<< HEAD
         System.out.println(" 3. actualizar los owners ");
+=======
+        System.out.println(" 3. Registar un car ");
+        System.out.println(" 4. Listar todos los cars ");
+        System.out.print(" Ingrese la opcion... ");
+>>>>>>> 09cfc9a35ced4346da5dc38c92e1331b3eff82a8
         int selection =  Integer.parseInt(this.entradaDeDatos.nextLine());
         
         if ( selection == 1) {
@@ -34,15 +42,24 @@ public class PrincipalMenu {
             this.ListOweners();
         }
         
+<<<<<<< HEAD
         if( selection == 3 ) {
             this.updateOwner();
+=======
+        if( selection == 3){
+            this.RegisterCar();
+        }
+        if(selection == 4){
+            this.listCars();
+>>>>>>> 09cfc9a35ced4346da5dc38c92e1331b3eff82a8
         }
         
     }
     
     
+    
     public void RegisterOwener() {
-        System.out.println("escribe el nombre");
+        System.out.println("escribe el nombre ");
         String vName = this.entradaDeDatos.nextLine();
         Owner ownerObject = new Owner(vName);
         this.oDao.addNewOwner(ownerObject);
@@ -59,6 +76,7 @@ public class PrincipalMenu {
        
     }
     
+<<<<<<< HEAD
     public void updateOwner(){
         List<Owner> ownersDB = new ArrayList();
        ownersDB = this.oDao.allOweners();
@@ -85,5 +103,26 @@ public class PrincipalMenu {
      
     }
     
+=======
+    public void RegisterCar() {
+        System.out.print("Escribe la marca ");
+        String vBrand = this.entradaDeDatos.nextLine();
+        System.out.print("Escribe el Id de owner ");
+        int vIdOwner = Integer.parseInt(this.entradaDeDatos.nextLine());
+        Car newCar = new Car(vBrand, vIdOwner);
+        this.carDao.addNewCar(newCar);
+    }
+    
+    public void listCars(){
+        List<Car> carsDB = new ArrayList();
+        carsDB = this.carDao.allCars();
+        
+        for(Car cc : carsDB){
+            System.out.println("ID car: " + cc.getIdCar());
+            System.out.println("car brand: " + cc.getBrand());
+            System.out.println("Id owner: " + cc.getIdOwner());
+        }
+    }
+>>>>>>> 09cfc9a35ced4346da5dc38c92e1331b3eff82a8
     
 }
