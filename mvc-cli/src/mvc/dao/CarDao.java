@@ -89,5 +89,22 @@ public class CarDao implements CarInterface {
                 .orElse(null);
         return carDB;
     }
+
+    @Override
+    public boolean deleteCar(int idCar) {
+        boolean result = false;
+        
+        try {
+            this.conn.open();
+            this.sql = "DELETE FROM TB_CAR WHERE ID_CAR = "+ idCar +";";
+            result = this.conn.executeSql(sql);
+            System.out.println("Se ha eliminado el carro exitosamente.");
+            this.conn.close();
+        } catch (Exception ex) {
+            Logger.getLogger(CarDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
     
 }

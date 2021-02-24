@@ -63,7 +63,7 @@ public class PrincipalMenu {
         }
 
         if (selection == 8) {
-            
+            this.deleteCar();
         }
     }
 
@@ -158,6 +158,14 @@ public class PrincipalMenu {
         
         Car carUpdate = this.carDao.updateCar(car);
         
+    }
+    
+    public void deleteCar(){
+        boolean carDB = false;
+        
+        System.out.println("Ingrese Id de carro a eliminar");
+        int vIdCar = Integer.parseInt(this.entradaDeDatos.nextLine());
+        carDB = this.carDao.deleteCar(vIdCar);
     }
 
 }

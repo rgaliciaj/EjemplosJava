@@ -18,4 +18,5 @@ public interface CarInterface {
     public List<Car> allCars();
     public Car updateCar (Car car);
     public Car carByID (int idCar);
+    public boolean deleteCar (int idCar);
 }
