@@ -16,4 +16,6 @@ import mvc.models.Car;
 public interface CarInterface {
     public void addNewCar (Car car);
     public List<Car> allCars();
+    public Car updateCar (Car car);
+    public Car carByID (int idCar);
 }

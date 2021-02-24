@@ -75,7 +75,18 @@ public class OwnerDao implements OwenerInterface {
 
     @Override
     public boolean deleteOwner(int idOwner) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            this.conn.open();
+            this.sql = "DELETE FROM TB_OWNER WHERE ID_OWNER = "+ idOwner+" ;";
+            result = this.conn.executeSql(this.sql);
+            
+            System.out.println("Se ha eliminado exitosamente.");
+            this.conn.close();
+        } catch (Exception ex) {
+            Logger.getLogger(OwnerDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 
     @Override

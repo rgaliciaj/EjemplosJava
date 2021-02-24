@@ -59,5 +59,35 @@ public class CarDao implements CarInterface {
         
         return cars;
     }
+
+    @Override
+    public Car updateCar(Car car) {
+        
+        Car carDB =  new Car();
+        carDB = this.carByID(car.getIdCar());
+        
+        carDB.setBrand(car.getBrand());
+        carDB.setIdOwner(car.getIdOwner());
+        
+        try {
+            this.conn.open();
+            this.sql = "UPDATE TB_CAR SET BRAND = '"+ carDB.getBrand() +"', ID_OWNER = "+ carDB.getIdOwner() +" WHERE ID_CAR = "+ carDB.getIdCar() +";";
+            this.conn.executeSql(sql);
+            this.conn.close();
+        } catch (Exception ex) {
+            Logger.getLogger(CarDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return carDB;
+    }
+
+    @Override
+    public Car carByID(int idCar) {
+        Car carDB = new Car();
+        carDB = this.allCars().stream().filter(elementCar -> elementCar.getIdCar() == idCar)
+                .findAny()
+                .orElse(null);
+        return carDB;
+    }
     
 }
