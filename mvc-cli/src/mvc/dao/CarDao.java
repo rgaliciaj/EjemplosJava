@@ -12,10 +12,12 @@ import java.util.logging.Logger;
 import mvc.interfaces.CarInterface;
 import mvc.models.Car;
 import mvc.connection.ConnectionDB;
+
 /**
  *
  * @author Ronald Galicia
  */
+
 public class CarDao implements CarInterface {
     ConnectionDB conn = new ConnectionDB();
     String sql = "";
