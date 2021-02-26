@@ -23,6 +23,7 @@ import models.Owner;
  */
 @WebServlet(name = "ownerServlet", urlPatterns = {"/ownerServlet"})
 public class ownerServlet extends HttpServlet {
+    String action = "";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,14 +43,26 @@ public class ownerServlet extends HttpServlet {
             ownerDao oDao = new ownerDao();
             String idOwner = "";
 
-            int opcion = Integer.parseInt(request.getParameter("optionOwner"));
-
+            String strExp = (request.getParameter("optionOwner") == null ) ? "0" :  request.getParameter("optionOwner");
+            int opcion = Integer.parseInt(strExp);
+            this.action = (request.getParameter("actionFormHidden") == null ) ? "nulo" : request.getParameter("actionFormHidden");
+                        
             if (opcion == 1) {
                 response.sendRedirect("registerOwner.jsp");
-
             }
-            String nameOwner = request.getParameter("nameOwner");
-            System.out.println("lo que llego fue " + nameOwner);
+            
+        
+            switch( this.action ) {
+                case "register":
+                    String nameOwner = request.getParameter("nameOwner");
+                    System.out.println("lo que llego fue " + nameOwner);
+                break;
+                default:
+                    System.out.println("el valor es nulo");
+            }
+            
+            
+           
         }
     }
 

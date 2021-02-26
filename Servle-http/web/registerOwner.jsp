@@ -20,9 +20,9 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Ingrese el nombre de owner</label>
                       <input  name="nameOwner" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="" >
+                      <input name="actionFormHidden" type="hidden"  value="register">
                       <button type="submit" class="btn btn-success btn-lg btn-block">Agregar</button>
                     </div>
-                    
                 </form>
             </div>
         </div>
