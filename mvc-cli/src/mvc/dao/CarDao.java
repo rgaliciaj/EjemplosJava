@@ -12,10 +12,12 @@ import java.util.logging.Logger;
 import mvc.interfaces.CarInterface;
 import mvc.models.Car;
 import mvc.connection.ConnectionDB;
+
 /**
  *
  * @author Ronald Galicia
  */
+
 public class CarDao implements CarInterface {
     ConnectionDB conn = new ConnectionDB();
     String sql = "";
@@ -58,6 +60,53 @@ public class CarDao implements CarInterface {
         }
         
         return cars;
+    }
+
+    @Override
+    public Car updateCar(Car car) {
+        
+        Car carDB =  new Car();
+        carDB = this.carByID(car.getIdCar());
+        
+        carDB.setBrand(car.getBrand());
+        carDB.setIdOwner(car.getIdOwner());
+        
+        try {
+            this.conn.open();
+            this.sql = "UPDATE TB_CAR SET BRAND = '"+ carDB.getBrand() +"', ID_OWNER = "+ carDB.getIdOwner() +" WHERE ID_CAR = "+ carDB.getIdCar() +";";
+            this.conn.executeSql(sql);
+            this.conn.close();
+        } catch (Exception ex) {
+            Logger.getLogger(CarDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return carDB;
+    }
+
+    @Override
+    public Car carByID(int idCar) {
+        Car carDB = new Car();
+        carDB = this.allCars().stream().filter(elementCar -> elementCar.getIdCar() == idCar)
+                .findAny()
+                .orElse(null);
+        return carDB;
+    }
+
+    @Override
+    public boolean deleteCar(int idCar) {
+        boolean result = false;
+        
+        try {
+            this.conn.open();
+            this.sql = "DELETE FROM TB_CAR WHERE ID_CAR = "+ idCar +";";
+            result = this.conn.executeSql(sql);
+            System.out.println("Se ha eliminado el carro exitosamente.");
+            this.conn.close();
+        } catch (Exception ex) {
+            Logger.getLogger(CarDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
     
 }
