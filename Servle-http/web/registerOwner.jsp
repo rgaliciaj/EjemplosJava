@@ -22,7 +22,6 @@
                       <input  name="nameOwner" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="" >
                       <button type="submit" class="btn btn-success btn-lg btn-block">Agregar</button>
                     </div>
-                    
                 </form>
             </div>
         </div>
