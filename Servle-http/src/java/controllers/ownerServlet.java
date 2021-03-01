@@ -23,7 +23,9 @@ import models.Owner;
  */
 @WebServlet(name = "ownerServlet", urlPatterns = {"/ownerServlet"})
 public class ownerServlet extends HttpServlet {
+
     String action = "";
+    ownerDao oDao = new ownerDao();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,29 +42,39 @@ public class ownerServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Owner owner = new Owner();
-            ownerDao oDao = new ownerDao();
+
             String idOwner = "";
 
-            String strExp = (request.getParameter("optionOwner") == null ) ? "0" :  request.getParameter("optionOwner");
+            String strExp = (request.getParameter("optionOwner") == null) ? "0" : request.getParameter("optionOwner");
             int opcion = Integer.parseInt(strExp);
-            this.action = (request.getParameter("actionFormHidden") == null ) ? "nulo" : request.getParameter("actionFormHidden");
-                        
-            if (opcion == 1) {
-                response.sendRedirect("registerOwner.jsp");
+            this.action = (request.getParameter("actionFormHidden") == null) ? "nulo" : request.getParameter("actionFormHidden");
+
+            switch (opcion) {
+                case 1:
+                    response.sendRedirect("registerOwner.jsp");
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("La opcion es incorrecta");
+                    ;
             }
-            
-        
-            switch( this.action ) {
+
+            switch (this.action) {
                 case "register":
                     String nameOwner = request.getParameter("nameOwner");
-                    System.out.println("lo que llego fue " + nameOwner);
+                    Owner regNameOwner = new Owner(nameOwner);
+                    this.oDao.registerOwner(regNameOwner);
+                    response.sendRedirect("index.jsp");
                 break;
                 default:
                     System.out.println("el valor es nulo");
             }
-            
-            
-           
+
         }
     }
 
