@@ -18,7 +18,6 @@ import utils.ConnectionDB;
 public class ownerDao {
     ConnectionDB conn = new ConnectionDB();
     String sql = "";
-    List<Owner> ownerList = new ArrayList();
     
     public void registerOwner(Owner own) {
         
@@ -31,5 +30,12 @@ public class ownerDao {
         } catch (Exception ex) {
             Logger.getLogger(ownerDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public List<Owner> allOwnerList(){
+        List<Owner> ownerList = new ArrayList();
+        
+        
+        return null;
     }
 }

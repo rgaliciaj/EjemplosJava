@@ -8,8 +8,8 @@ package controllers;
 import dao.ownerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,8 +42,9 @@ public class ownerServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Owner owner = new Owner();
+            List<Owner> ownerList = new ArrayList();
 
-            String idOwner = "";
+            //String idOwner = "";
 
             String strExp = (request.getParameter("optionOwner") == null) ? "0" : request.getParameter("optionOwner");
             int opcion = Integer.parseInt(strExp);
@@ -54,6 +55,7 @@ public class ownerServlet extends HttpServlet {
                     response.sendRedirect("registerOwner.jsp");
                     break;
                 case 2:
+                    response.sendRedirect("ListAllOwners.jsp");
                     break;
                 case 3:
                     break;
@@ -70,6 +72,9 @@ public class ownerServlet extends HttpServlet {
                     Owner regNameOwner = new Owner(nameOwner);
                     this.oDao.registerOwner(regNameOwner);
                     response.sendRedirect("index.jsp");
+                break;
+                case "showOwners":
+                    System.out.println("Leeeegggaaa aqukkki");
                 break;
                 default:
                     System.out.println("el valor es nulo");
