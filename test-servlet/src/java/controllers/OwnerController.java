@@ -5,30 +5,25 @@
  */
 package controllers;
 
-import dao.ownerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Owner;
-import dao.ownerDao;
+import connection.ConnectionDB;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Ronald Galicia
+ * @author Pablo Jacobo
  */
-@WebServlet(name = "ownerServlet", urlPatterns = {"/ownerServlet"})
-public class ownerServlet extends HttpServlet {
-    String action = "";
-    ownerDao owDao = new ownerDao();
-
+@WebServlet(name = "OwnerController", urlPatterns = {"/OwnerController"})
+public class OwnerController extends HttpServlet {
+     ConnectionDB cn = new ConnectionDB(); 
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,37 +38,15 @@ public class ownerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Owner owner = new Owner();
-            ownerDao oDao = new ownerDao();
-            String idOwner = "";
-
-            String strExp = (request.getParameter("optionOwner") == null ) ? "0" :  request.getParameter("optionOwner");
-            int opcion = Integer.parseInt(strExp);
-            this.action = (request.getParameter("actionFormHidden") == null ) ? "nulo" : request.getParameter("actionFormHidden");
-                        
-            if (opcion == 1) {
-                response.sendRedirect("registerOwner.jsp");
+            String nameOwner = request.getParameter("nameOwner");
+            try {
+                this.cn.open();
+                String sql = "INSERT INTO TB_OWNER(NAME_OWNER) VALUES('"+ nameOwner +"')";
+                System.out.println(" slq = "+ sql  );
+                this.cn.close();
+            } catch (Exception ex) {
+                Logger.getLogger(OwnerController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        
-            switch( this.action ) {
-                case "register":
-                    String nameOwner = request.getParameter("nameOwner");
-                    Owner newOwner = new Owner(nameOwner);
-                    
-                    try {
-                        this.owDao.addOwner(newOwner);
-                    } catch (Exception ex) {
-                        Logger.getLogger(ownerServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            
-                break;
-                default:
-                    System.out.println("el valor es nulo");
-            }
-            
-            
-           
         }
     }
 
