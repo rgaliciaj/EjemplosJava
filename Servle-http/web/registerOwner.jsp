@@ -12,9 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <div id="max-space-add" class="card">
-           <a href="index.jsp" type="button" class="btn btn-outline-warning">Regresar</a>
+            <a href="index.jsp" type="button" class="btn btn-outline-warning">Regresar</a><br>
             <div class="card-body">
                 <form method="post" action="ownerServlet" >
                     <div class="form-group">

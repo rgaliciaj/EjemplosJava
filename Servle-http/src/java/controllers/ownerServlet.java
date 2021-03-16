@@ -8,8 +8,8 @@ package controllers;
 import dao.ownerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +26,13 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "ownerServlet", urlPatterns = {"/ownerServlet"})
 public class ownerServlet extends HttpServlet {
+
     String action = "";
+<<<<<<< HEAD
     ownerDao owDao = new ownerDao();
+=======
+    ownerDao oDao = new ownerDao();
+>>>>>>> dceefb75ba012c8bc0a87cf2acbebbfb429f984e
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,21 +49,34 @@ public class ownerServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Owner owner = new Owner();
-            ownerDao oDao = new ownerDao();
-            String idOwner = "";
+            List<Owner> ownerList = new ArrayList();
 
-            String strExp = (request.getParameter("optionOwner") == null ) ? "0" :  request.getParameter("optionOwner");
+            //String idOwner = "";
+
+            String strExp = (request.getParameter("optionOwner") == null) ? "0" : request.getParameter("optionOwner");
             int opcion = Integer.parseInt(strExp);
-            this.action = (request.getParameter("actionFormHidden") == null ) ? "nulo" : request.getParameter("actionFormHidden");
-                        
-            if (opcion == 1) {
-                response.sendRedirect("registerOwner.jsp");
+            this.action = (request.getParameter("actionFormHidden") == null) ? "nulo" : request.getParameter("actionFormHidden");
+
+            switch (opcion) {
+                case 1:
+                    response.sendRedirect("registerOwner.jsp");
+                    break;
+                case 2:
+                    response.sendRedirect("ListAllOwners.jsp");
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("La opcion es incorrecta");
+                    ;
             }
-            
-        
-            switch( this.action ) {
+
+            switch (this.action) {
                 case "register":
                     String nameOwner = request.getParameter("nameOwner");
+<<<<<<< HEAD
                     Owner newOwner = new Owner(nameOwner);
                     
                     try {
@@ -67,13 +85,19 @@ public class ownerServlet extends HttpServlet {
                         Logger.getLogger(ownerServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
             
+=======
+                    Owner regNameOwner = new Owner(nameOwner);
+                    this.oDao.registerOwner(regNameOwner);
+                    response.sendRedirect("index.jsp");
+                break;
+                case "showOwners":
+                    System.out.println("Leeeegggaaa aqukkki");
+>>>>>>> dceefb75ba012c8bc0a87cf2acbebbfb429f984e
                 break;
                 default:
                     System.out.println("el valor es nulo");
             }
-            
-            
-           
+
         }
     }
 
