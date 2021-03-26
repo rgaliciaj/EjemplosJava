@@ -182,10 +182,9 @@ public class Menu {
                 
                 
                 /*for(Carro car : carro){
-                    System.out.println("Id carro: " 
-                            + car.idCarro + " Marca: " 
-                            + car.marca + " Id Persona: "
-                            + car.idPersona);
+                    System.out.println("Id carro: " + car.idCarro 
+                + " Marca: " + car.marca 
+                + " Id Persona: " + car.idPersona);
                 }*/
                 
                 

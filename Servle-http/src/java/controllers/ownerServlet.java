@@ -28,11 +28,9 @@ import java.util.logging.Logger;
 public class ownerServlet extends HttpServlet {
 
     String action = "";
-<<<<<<< HEAD
+
     ownerDao owDao = new ownerDao();
-=======
     ownerDao oDao = new ownerDao();
->>>>>>> dceefb75ba012c8bc0a87cf2acbebbfb429f984e
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,7 +74,7 @@ public class ownerServlet extends HttpServlet {
             switch (this.action) {
                 case "register":
                     String nameOwner = request.getParameter("nameOwner");
-<<<<<<< HEAD
+
                     Owner newOwner = new Owner(nameOwner);
                     
                     try {
@@ -85,14 +83,14 @@ public class ownerServlet extends HttpServlet {
                         Logger.getLogger(ownerServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
             
-=======
+
                     Owner regNameOwner = new Owner(nameOwner);
                     this.oDao.registerOwner(regNameOwner);
                     response.sendRedirect("index.jsp");
                 break;
                 case "showOwners":
                     System.out.println("Leeeegggaaa aqukkki");
->>>>>>> dceefb75ba012c8bc0a87cf2acbebbfb429f984e
+
                 break;
                 default:
                     System.out.println("el valor es nulo");
