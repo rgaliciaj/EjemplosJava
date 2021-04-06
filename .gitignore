@@ -20,5 +20,9 @@
 /Servle-http/dist/
 /test-servlet/nbproject/private/
 /test-servlet/build/
+<<<<<<< HEAD
 /EjercicioConArreglos/nbproject/private/
 /EjercicioConArreglos/build/
+=======
+/.metadata/
+>>>>>>> e355f19e8340f2b80137fcc3c3063e7de000e4a7
